@@ -23,12 +23,12 @@ var Engine = (function(global) {
         win = global.window,
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
-        lastTime;
-
+        lastTime,
+        points = 0;
     canvas.width = 505;
     canvas.height = 606;
     doc.body.appendChild(canvas);
-
+    ctx.font = "24px Impact";
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
      */
@@ -93,8 +93,16 @@ var Engine = (function(global) {
     function updateEntities(dt) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
+            if(((player.x - enemy.x) < 79) && ((player.x - enemy.x) > 79 - 155) && enemy.y == player.y) {
+              points = 0;
+              reset();
+            }
         });
         player.update();
+        if(player.y < 0)  {
+          points++;
+          reset();
+        }
     }
 
     /* This function initially draws the "game level", it will then call
@@ -135,7 +143,7 @@ var Engine = (function(global) {
                 ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
             }
         }
-
+        ctx.fillText("points: " + points,101,83);
         renderEntities();
     }
 
@@ -159,6 +167,12 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
+      player.x = 202;
+      player.y = 83*5 - 20;
+      for(var i = 0; i < allEnemies.length; i++)  {
+        allEnemies[i].x = -101;
+        allEnemies[i].y = 83 * Math.floor(Math.random() * (3) + 1) - 20;
+      }
         // noop
     }
 
