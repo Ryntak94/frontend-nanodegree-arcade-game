@@ -17,9 +17,9 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     this.x += 101 * dt * this.dx; //moves enemy based on the time that has passed and dx speed manipulator
-    if(this.x > 505)  { //checks to see if bug exited the right side of screen
-      this.x = -101; //if it has it moves it to left side of screen
-      this.y = 83 * Math.floor(Math.random() * (3) + 1) - 20; //sets it to a random row
+    if (this.x > 505) { //checks to see if bug exited the right side of screen
+        this.x = -101; //if it has it moves it to left side of screen
+        this.y = 83 * Math.floor(Math.random() * (3) + 1) - 20; //sets it to a random row
     }
 };
 
@@ -32,40 +32,37 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function() { //used for creating player object
-  this.sprite = 'images/char-boy.png'; //gives the player the char-boy sprite
-  this.x = 202; //puts player character in middle column
-  this.y = 83*5 - 20; //puts player on bottom row
+    this.sprite = 'images/char-boy.png'; //gives the player the char-boy sprite
+    this.x = 202; //puts player character in middle column
+    this.y = 83 * 5 - 20; //puts player on bottom row
 }
 
-Player.prototype.update = function()  {
-  if(this.x < 0)  { //ensures player can't cross left bound of screen
-    this.x = 0;
-  }
-  if(this.x > 404)  { //ensures player can't leave right bound of screen
-    this.x = 404;
-  }
-  if(this.y > 83 * 5 - 20)  { //ensures player can't cross lower bound of screen
-    this.y = 83 * 5 - 20;
-  }
+Player.prototype.update = function() {
+    if (this.x < 0) { //ensures player can't cross left bound of screen
+        this.x = 0;
+    }
+    if (this.x > 404) { //ensures player can't leave right bound of screen
+        this.x = 404;
+    }
+    if (this.y > 83 * 5 - 20) { //ensures player can't cross lower bound of screen
+        this.y = 83 * 5 - 20;
+    }
 }
 
-Player.prototype.render = function()  { //renders player on screen
-  ctx.drawImage(Resources.get(this.sprite), this.x, this.y)
+Player.prototype.render = function() { //renders player on screen
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y)
 }
 
 Player.prototype.handleInput = function(keyPress) { //checks for player key iput
-  if(keyPress == "up") { //moves character up one square if the up arrow key is pressed
-    this.y -= 83;
-  }
-  else if(keyPress == "down") { //moves character down one square if down arrow key is pressed
-    this.y += 83;
-  }
-  else if(keyPress == "left") { //moves character left one square if the left arrow key is pressed
-    this.x -= 101;
-  }
-  else if(keyPress == "right")  { //moves character right one suqare if the right arrow key is pressed
-    this.x += 101;
-  }
+    if (keyPress == "up") { //moves character up one square if the up arrow key is pressed
+        this.y -= 83;
+    } else if (keyPress == "down") { //moves character down one square if down arrow key is pressed
+        this.y += 83;
+    } else if (keyPress == "left") { //moves character left one square if the left arrow key is pressed
+        this.x -= 101;
+    } else if (keyPress == "right") { //moves character right one suqare if the right arrow key is pressed
+        this.x += 101;
+    }
 }
 
 // Now instantiate your objects.

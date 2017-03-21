@@ -13,7 +13,6 @@
  * the canvas' context (ctx) object globally available to make writing app.js
  * a little simpler to work with.
  */
-
 var Engine = (function(global) {
     /* Predefine the variables we'll be using within this scope,
      * create the canvas element, grab the 2D context for that canvas
@@ -95,15 +94,15 @@ var Engine = (function(global) {
     function updateEntities(dt) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
-            if(((player.x - enemy.x) < 79) && ((player.x - enemy.x) > 79 - 155) && enemy.y == player.y) { // checks for player-enemy collision
-              points = 0; //resets points
-              reset(); //resets game state to a new game.
+            if (((player.x - enemy.x) < 79) && ((player.x - enemy.x) > 79 - 155) && enemy.y == player.y) { // checks for player-enemy collision
+                points = 0; //resets points
+                reset(); //resets game state to a new game.
             }
         });
         player.update();
-        if(player.y < 0)  { //checks if player wins
-          points++; //adds one points
-          reset(); //resets game state to new game
+        if (player.y < 0) { //checks if player wins
+            points++; //adds one points
+            reset(); //resets game state to new game
         }
     }
 
@@ -118,12 +117,12 @@ var Engine = (function(global) {
          * for that particular row of the game level.
          */
         var rowImages = [
-                'images/water-block.png',   // Top row is water
-                'images/stone-block.png',   // Row 1 of 3 of stone
-                'images/stone-block.png',   // Row 2 of 3 of stone
-                'images/stone-block.png',   // Row 3 of 3 of stone
-                'images/grass-block.png',   // Row 1 of 2 of grass
-                'images/grass-block.png'    // Row 2 of 2 of grass
+                'images/water-block.png', // Top row is water
+                'images/stone-block.png', // Row 1 of 3 of stone
+                'images/stone-block.png', // Row 2 of 3 of stone
+                'images/stone-block.png', // Row 3 of 3 of stone
+                'images/grass-block.png', // Row 1 of 2 of grass
+                'images/grass-block.png' // Row 2 of 2 of grass
             ],
             numRows = 6,
             numCols = 5,
@@ -145,8 +144,8 @@ var Engine = (function(global) {
                 ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
             }
         }
-        ctx.fillText("points: " + points,10,83)
-        ctx.strokeText("points: " + points,10,83); //displays points
+        ctx.fillText("points: " + points, 10, 83)
+        ctx.strokeText("points: " + points, 10, 83); //displays points
         renderEntities();
     }
 
@@ -170,13 +169,13 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() { //used to reset game state
-      player.x = 202; //centers the player in the middle column
-      player.y = 83*5 - 20; //places player on bottom of screen
-      for(var i = 0; i < allEnemies.length; i++)  { //iterates through all enemies (bugs)
-        allEnemies[i].x = -101; //places bugs off the left side of the screen
-        allEnemies[i].y = 83 * Math.floor(Math.random() * (3) + 1) - 20; //places bugs in one of three random columns
-        allEnemies[i].dx = (1 + Math.random() * 3 + (points * Math.random())); // resets dx value and makes bugs faster based on how many points you have
-      }
+        player.x = 202; //centers the player in the middle column
+        player.y = 83 * 5 - 20; //places player on bottom of screen
+        for (var i = 0; i < allEnemies.length; i++) { //iterates through all enemies (bugs)
+            allEnemies[i].x = -101; //places bugs off the left side of the screen
+            allEnemies[i].y = 83 * Math.floor(Math.random() * (3) + 1) - 20; //places bugs in one of three random columns
+            allEnemies[i].dx = (1 + Math.random() * 3 + (points * Math.random())); // resets dx value and makes bugs faster based on how many points you have
+        }
         // noop
     }
 
