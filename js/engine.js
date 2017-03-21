@@ -28,7 +28,9 @@ var Engine = (function(global) {
     canvas.width = 505;
     canvas.height = 606;
     doc.body.appendChild(canvas);
-    ctx.font = "24px Impact"; //sets font for points
+    ctx.font = "24pt Impact"; //sets font for points
+    ctx.fillStyle = "white";
+    ctx.lineWidth = 2;
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
      */
@@ -143,7 +145,8 @@ var Engine = (function(global) {
                 ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
             }
         }
-        ctx.fillText("points: " + points,101,83); //displays points
+        ctx.fillText("points: " + points,10,83)
+        ctx.strokeText("points: " + points,10,83); //displays points
         renderEntities();
     }
 
