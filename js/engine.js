@@ -144,7 +144,7 @@ var Engine = (function(global) {
                 ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
             }
         }
-        ctx.fillText("points: " + points, 10, 83)
+        ctx.fillText("points: " + points, 10, 83);
         ctx.strokeText("points: " + points, 10, 83); //displays points
         renderEntities();
     }

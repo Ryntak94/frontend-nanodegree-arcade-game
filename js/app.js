@@ -4,7 +4,7 @@ var Enemy = function() {
     // we've provided one for you to get started
     this.x = -101; //creates each Enemy off the left side of screen
     this.y = 83 * Math.floor(Math.random() * (3) + 1) - 20; //places each bug in a random row
-    this.dx = (1 + Math.random() * 3) //random number generated within a range to affect speed of bug
+    this.dx = (1 + Math.random() * 3); //random number generated within a range to affect speed of bug
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
@@ -35,7 +35,7 @@ var Player = function() { //used for creating player object
     this.sprite = 'images/char-boy.png'; //gives the player the char-boy sprite
     this.x = 202; //puts player character in middle column
     this.y = 83 * 5 - 20; //puts player on bottom row
-}
+};
 
 Player.prototype.update = function() {
     if (this.x < 0) { //ensures player can't cross left bound of screen
@@ -47,11 +47,11 @@ Player.prototype.update = function() {
     if (this.y > 83 * 5 - 20) { //ensures player can't cross lower bound of screen
         this.y = 83 * 5 - 20;
     }
-}
+};
 
 Player.prototype.render = function() { //renders player on screen
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y)
-}
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
 
 Player.prototype.handleInput = function(keyPress) { //checks for player key iput
     if (keyPress == "up") { //moves character up one square if the up arrow key is pressed
@@ -63,7 +63,7 @@ Player.prototype.handleInput = function(keyPress) { //checks for player key iput
     } else if (keyPress == "right") { //moves character right one suqare if the right arrow key is pressed
         this.x += 101;
     }
-}
+};
 
 // Now instantiate your objects.
 var bug = new Enemy(); //creates the first bug object
