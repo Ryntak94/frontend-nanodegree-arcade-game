@@ -172,7 +172,7 @@ var Engine = (function(global) {
       for(var i = 0; i < allEnemies.length; i++)  { //iterates through all enemies (bugs)
         allEnemies[i].x = -101; //places bugs off the left side of the screen
         allEnemies[i].y = 83 * Math.floor(Math.random() * (3) + 1) - 20; //places bugs in one of three random columns
-        //todo: implement dx reset
+        allEnemies[i].dx = (1 + Math.random() * 3 + (points * Math.random())); // resets dx value and makes bugs faster based on how many points you have
       }
         // noop
     }
