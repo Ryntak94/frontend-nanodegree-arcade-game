@@ -24,11 +24,11 @@ var Engine = (function(global) {
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
         lastTime,
-        points = 0;
+        points = 0; //used for counting points
     canvas.width = 505;
     canvas.height = 606;
     doc.body.appendChild(canvas);
-    ctx.font = "24px Impact";
+    ctx.font = "24px Impact"; //sets font for points
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
      */
@@ -93,15 +93,15 @@ var Engine = (function(global) {
     function updateEntities(dt) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
-            if(((player.x - enemy.x) < 79) && ((player.x - enemy.x) > 79 - 155) && enemy.y == player.y) {
-              points = 0;
-              reset();
+            if(((player.x - enemy.x) < 79) && ((player.x - enemy.x) > 79 - 155) && enemy.y == player.y) { // checks for player-enemy collision
+              points = 0; //resets points
+              reset(); //resets game state to a new game.
             }
         });
         player.update();
-        if(player.y < 0)  {
-          points++;
-          reset();
+        if(player.y < 0)  { //checks if player wins
+          points++; //adds one points
+          reset(); //resets game state to new game
         }
     }
 
@@ -143,7 +143,7 @@ var Engine = (function(global) {
                 ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
             }
         }
-        ctx.fillText("points: " + points,101,83);
+        ctx.fillText("points: " + points,101,83); //displays points
         renderEntities();
     }
 
@@ -166,12 +166,13 @@ var Engine = (function(global) {
      * handle game reset states - maybe a new game menu or a game over screen
      * those sorts of things. It's only called once by the init() method.
      */
-    function reset() {
-      player.x = 202;
-      player.y = 83*5 - 20;
-      for(var i = 0; i < allEnemies.length; i++)  {
-        allEnemies[i].x = -101;
-        allEnemies[i].y = 83 * Math.floor(Math.random() * (3) + 1) - 20;
+    function reset() { //used to reset game state
+      player.x = 202; //centers the player in the middle column
+      player.y = 83*5 - 20; //places player on bottom of screen
+      for(var i = 0; i < allEnemies.length; i++)  { //iterates through all enemies (bugs)
+        allEnemies[i].x = -101; //places bugs off the left side of the screen
+        allEnemies[i].y = 83 * Math.floor(Math.random() * (3) + 1) - 20; //places bugs in one of three random columns
+        //todo: implement dx reset
       }
         // noop
     }
