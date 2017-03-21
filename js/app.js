@@ -44,10 +44,6 @@ Player.prototype.update = function()  {
   if(this.x > 404)  { //ensures player can't leave right bound of screen
     this.x = 404;
   }
-  if(this.y < 0) { //ensures player can't go off upper bound of screen (pretty sure this is redundant code)
-    console.log("You win");
-    this.y = -20;
-  }
   if(this.y > 83 * 5 - 20)  { //ensures player can't cross lower bound of screen
     this.y = 83 * 5 - 20;
   }
