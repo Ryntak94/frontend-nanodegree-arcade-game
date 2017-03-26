@@ -1,3 +1,4 @@
+var characters = ["images/char-boy.png", "images/char-cat-girl.png", "images/char-horn-girl.png", "images/char-pink-girl.png", "images/char-princess-girl.png"]
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
@@ -32,7 +33,7 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function() { //used for creating player object
-    this.sprite = 'images/char-boy.png'; //gives the player the char-boy sprite
+    this.sprite; //gives the player the char-boy sprite
     this.x = 202; //puts player character in middle column
     this.y = 83 * 5 - 20; //puts player on bottom row
 };
